@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronDown, Menu, X } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface NavItem {
@@ -71,7 +71,6 @@ const navItems: NavItem[] = [
 ];
 
 const Navbar: React.FC = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   const toggleDropdown = (title: string) => {
@@ -142,111 +141,12 @@ const Navbar: React.FC = () => {
           </Link>
           
           <div className="flex items-center pl-3">
-            <button className="w-6 h-6 rounded-full overflow-hidden bg-gray-200">
-              <img src="" alt="India flag" className="w-full h-full object-cover" />
-            </button>
+            <Link to="/region" className="w-6 h-6 rounded-full overflow-hidden bg-gray-200 block transition-transform hover:scale-110">
+              <img src="https://as1.ftcdn.net/v2/jpg/05/33/37/90/1000_F_533379078_I7wWSv66fi8A0aimgR7zj0uOzRuHL7GY.jpg" alt="India flag" className="w-full h-full object-cover" />
+            </Link>
           </div>
           
-          <button className="p-1" onClick={() => setMobileMenuOpen(true)}>
-            <Menu size={20} />
-          </button>
         </nav>
-        
-        {/* Mobile menu button */}
-        <div className="lg:hidden flex items-center">
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2"
-            aria-label="Toggle Menu"
-          >
-            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-      </div>
-      
-      {/* Full screen menu overlay (matching the image) */}
-      <div className={`fixed inset-0 bg-black/80 z-40 transform transition-transform duration-300 ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-        <div className="absolute top-4 right-4">
-          <button
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-white p-2"
-            aria-label="Close Menu"
-          >
-            <X size={24} />
-          </button>
-        </div>
-        
-        {/* Mega menu content based on the image */}
-        <div className="flex h-full pt-16 pb-8 px-6">
-          <div className="w-full flex flex-col h-full text-white">
-            {/* Main mega menu sections */}
-            <div className="flex flex-1 overflow-auto">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full pt-8">
-                {/* Electric Scooters Column */}
-                <div>
-                  <h3 className="text-gray-400 font-medium mb-4 text-sm">Electric Scooters</h3>
-                  <ul className="space-y-4">
-                    {megaMenuItems.electricScooters.map((item) => (
-                      <li key={item.title}>
-                        <Link to={item.path} className="text-xl font-medium hover:text-ather-green">
-                          {item.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                {/* Resources Column */}
-                <div>
-                  <h3 className="text-gray-400 font-medium mb-4 text-sm">Resources</h3>
-                  <ul className="space-y-4">
-                    {megaMenuItems.resources.map((item) => (
-                      <li key={item.title}>
-                        <Link to={item.path} className="text-xl font-medium hover:text-ather-green">
-                          {item.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                {/* Ather Ecosystem Column */}
-                <div>
-                  <h3 className="text-gray-400 font-medium mb-4 text-sm">Ather Ecosystem</h3>
-                  <ul className="space-y-4">
-                    {megaMenuItems.atherEcosystem.map((item) => (
-                      <li key={item.title}>
-                        <Link to={item.path} className="text-xl font-medium hover:text-ather-green">
-                          {item.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-            
-            {/* Footer links */}
-            <div className="mt-auto border-t border-gray-700 pt-6">
-              <div className="flex flex-wrap gap-x-6 gap-y-4 justify-center md:justify-start">
-                {footerLinks.map((link) => (
-                  <Link 
-                    key={link.title} 
-                    to={link.path}
-                    className="text-sm text-gray-300 hover:text-white"
-                  >
-                    {link.title}
-                  </Link>
-                ))}
-                <div className="ml-auto">
-                  <button className="bg-white rounded-full px-4 py-2 text-sm font-medium text-black">
-                    Looking for help?
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </header>
   );

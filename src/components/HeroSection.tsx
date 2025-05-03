@@ -71,7 +71,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 
   return (
     <section 
-      className="relative w-full h-screen flex items-center bg-cover bg-center transition-all duration-700 ease-in-out overflow-hidden"
+      className="relative w-full h-screen flex items-start bg-cover bg-center transition-all duration-700 ease-in-out overflow-hidden"
       style={{ 
         ...(isVideo ? {} : { backgroundImage: `url(${currentTab.backgroundImage})` }),
       }}
@@ -91,56 +91,78 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           onPlay={() => setIsVideoPlaying(true)}
         />
       )}
-      <div className="absolute inset-0 bg-black/20" />
+      {/* Enhanced gradient overlay for better text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/40" />
       
-      <div className="relative z-10 container mx-auto px-6 lg:px-12 pt-20 h-full flex flex-col justify-between">
+      <div className="relative z-10 w-full h-full flex flex-col justify-between">
         {/* Content Area */}
-        <div className="max-w-3xl pt-20 lg:pt-32">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-2 md:mb-4 animate-fade-in">
+        <div className="px-8 lg:px-16 pt-32 md:pt-36">
+          <div className="max-w-xl transform transition-all duration-700 ease-out translate-y-0 opacity-100">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2 md:mb-4 
+              drop-shadow-lg transition-all duration-500 ease-out animate-fade-slide-down">
             {currentTab.title}
           </h1>
           
           {currentTab.subtitle && (
-            <p className="text-xl md:text-2xl lg:text-3xl text-white mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              <p className="text-lg md:text-xl lg:text-2xl text-white/90 mb-6 
+                drop-shadow-md transition-all duration-500 delay-100 animate-fade-slide-down" 
+                style={{ animationDelay: '0.2s' }}>
               {currentTab.subtitle}
             </p>
           )}
           
-          <div className="flex flex-wrap gap-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            <div className="flex flex-wrap gap-4 transition-all duration-500 delay-200 
+              animate-fade-slide-down" style={{ animationDelay: '0.4s' }}>
             {currentTab.primaryButtonText && (
               <Link to={currentTab.primaryButtonUrl || '#'}>
-                <Button className="bg-white text-black hover:bg-white/90 hover:text-black rounded-full px-8 py-6 h-auto text-base">
-                  {currentTab.primaryButtonText}
+                <Button 
+                  className="bg-white text-slate-900 hover:bg-white/90 hover:scale-105 
+                  rounded-full px-8 py-6 h-auto text-base font-semibold
+                  transition-all duration-300 shadow-[0_4px_14px_0_rgba(255,255,255,0.3)]
+                  hover:shadow-[0_6px_20px_0_rgba(255,255,255,0.4)]
+                  active:scale-95 relative overflow-hidden group">
+                  <span className="relative z-10">{currentTab.primaryButtonText}</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 
+                    transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform 
+                    duration-700 ease-in-out" />
                 </Button>
               </Link>
             )}
             
             {currentTab.secondaryButtonText && (
               <Link to={currentTab.secondaryButtonUrl || '#'}>
-                <Button variant="outline" className="border-white text-white hover:bg-white/20 hover:text-white rounded-full px-8 py-6 h-auto text-base">
+                <Button 
+                  variant="outline" 
+                  className="border-2 border-white text-slate-700 hover:bg-white/10 
+                  rounded-full px-8 py-6 h-auto text-base font-semibold
+                  transition-all duration-300 shadow-[0_4px_14px_0_rgba(255,255,255,0.2)]
+                  hover:shadow-[0_6px_20px_0_rgba(255,255,255,0.3)]
+                  active:scale-95 backdrop-blur-sm">
                   {currentTab.secondaryButtonText}
                 </Button>
               </Link>
             )}
+            </div>
           </div>
         </div>
         
-        {/* Bottom area with tabs - updated to match design */}
-        <div className="mb-10 flex justify-between items-end">
-          <TabSlider 
-            tabs={tabNames}
-            activeTab={activeTab}
-            setActiveTab={(index) => {
-              // Reset video playback when manually changing tabs
-              if (videoRef.current) {
-                videoRef.current.currentTime = 0;
-              }
-              setActiveTab(index);
-            }}
-            className="rounded-full bg-black/30 backdrop-blur-sm text-white"
-          />
-          
-          
+        {/* Bottom area with tabs - Updated with width constraints */}
+        <div className="px-8 lg:px-16 mb-8 md:mb-10 transition-all duration-500 ease-out">
+          <div className="max-w-fit rounded-full overflow-hidden">
+            <TabSlider 
+              tabs={tabNames}
+              activeTab={activeTab}
+              setActiveTab={(index) => {
+                // Reset video playback when manually changing tabs
+                if (videoRef.current) {
+                  videoRef.current.currentTime = 0;
+                }
+                setActiveTab(index);
+              }}
+              className="rounded-full backdrop-blur-sm text-white/90 hover:text-white 
+                transition-colors duration-300 shadow-lg px-6 py-2 inline-flex"
+            />
+          </div>
         </div>
       </div>
     </section>

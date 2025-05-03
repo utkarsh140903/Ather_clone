@@ -22,9 +22,9 @@ const NoticeBar: React.FC = () => {
           animate={{ height: "auto", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="bg-red-100 text-red-800 fixed w-full top-0 z-50"
+          className="bg-red-100 text-red-800 w-full z-30"
         >
-          <div className="container mx-auto py-3 px-4">
+          <div className="container mx-auto py-4 px-4">
             <div className="flex flex-wrap justify-between items-center gap-4">
               <div className="flex items-center">
                 <motion.svg 
@@ -161,10 +161,10 @@ const Footer: React.FC = () => {
 
   return (
     <>
-      <NoticeBar />
-      <footer className="bg-ather-darkGray text-white mt-12">
-      {/* Main footer */}
-      <div className="container mx-auto py-16 px-4">
+      <footer className="bg-ather-darkGray text-white">
+        <NoticeBar />
+        {/* Main footer */}
+        <div className="container mx-auto py-16 px-4 mt-0">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
           <FooterColumn 
             title="Electric Scooters" 
@@ -330,7 +330,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
       </div>
-    </footer>
+      </footer>
     </>
   );
 };
