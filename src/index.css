@@ -1,0 +1,105 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=gilroy@500,600,700,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 13%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 13%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 13%;
+
+    --primary: 108 59% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 13%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 13%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 108 59% 50%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 13%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 13%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 13%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 108 59% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 16%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 16%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 0 0% 16%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 108 59% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-gilroy;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-gilroy font-semibold;
+  }
+  
+  .hover-arrow {
+    @apply relative inline-flex items-center after:absolute after:content-['→'] after:opacity-0 after:ml-1 after:transform after:translate-x-[-5px] after:transition-all hover:after:opacity-100 hover:after:translate-x-0;
+  }
+  
+  .ather-button {
+    @apply px-6 py-3 rounded font-medium transition-all duration-300;
+  }
+  
+  .ather-button-primary {
+    @apply ather-button bg-ather-green text-white hover:bg-opacity-90;
+  }
+  
+  .ather-button-secondary {
+    @apply ather-button bg-black text-white hover:bg-opacity-90;
+  }
+  
+  .ather-button-outline {
+    @apply ather-button border border-black hover:bg-black hover:text-white;
+  }
+}
