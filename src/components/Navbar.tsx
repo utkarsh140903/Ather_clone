@@ -151,6 +151,9 @@ const Navbar: React.FC = () => {
           <Link to="/locate" className="text-sm font-medium hover:text-ather-green">
             Locate us
           </Link>
+          <Link to="/quiz" className="text-sm font-medium text-ather-green hover:text-ather-green-dark">
+            Find Your Match
+          </Link>
           <a 
             href="#sustainability-calculator" 
             onClick={(e) => {

@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { Check, ChevronRight, Battery, Zap } from 'lucide-react';
+
+// Import components
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import ProductShowcase from '@/components/ProductShowcase';
@@ -377,6 +382,155 @@ const Index: React.FC = () => {
           accessories={accessories}
         />
         
+        {/* Quiz Promotion Section */}
+        <section className="py-20 px-4 bg-gradient-to-b from-green-50 to-white">
+          <motion.div 
+            className="container mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="max-w-6xl mx-auto">
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                {/* Content */}
+                <div className="space-y-6">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <h2 className="text-3xl md:text-4xl font-bold text-ather-darkGray mb-4">
+                      Find Your Perfect Match
+                    </h2>
+                    <p className="text-lg text-ather-gray">
+                      Not sure which Ather scooter is right for you? Our interactive quiz helps you discover the ideal model for your lifestyle in just a few minutes.
+                    </p>
+                  </motion.div>
+                  
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    className="space-y-4"
+                  >
+                    <div className="flex items-start">
+                      <div className="bg-ather-green rounded-full p-2 mr-4 mt-1 text-white">
+                        <Check size={16} />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-ather-darkGray">Personalized Recommendations</h3>
+                        <p className="text-ather-gray">Get personalized scooter recommendations based on your unique needs and preferences.</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start">
+                      <div className="bg-ather-green rounded-full p-2 mr-4 mt-1 text-white">
+                        <Zap size={16} />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-ather-darkGray">Discover Your Savings</h3>
+                        <p className="text-ather-gray">Calculate potential savings on fuel and maintenance costs compared to conventional vehicles.</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start">
+                      <div className="bg-ather-green rounded-full p-2 mr-4 mt-1 text-white">
+                        <Battery size={16} />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-ather-darkGray">Environmental Impact</h3>
+                        <p className="text-ather-gray">See your potential CO₂ reduction and contribution to a greener planet.</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                  
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                    className="pt-4"
+                  >
+                    <Link to="/quiz">
+                      <Button size="lg" className="bg-ather-green hover:bg-ather-green/90 text-white px-8 py-6 text-lg rounded-full">
+                        Take the Quiz
+                        <ChevronRight size={20} className="ml-2" />
+                      </Button>
+                    </Link>
+                    <p className="text-sm text-ather-gray mt-3">
+                      Takes only 2 minutes • No registration required
+                    </p>
+                  </motion.div>
+                </div>
+                
+                {/* Image */}
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, delay: 0.2 }}
+                  className="relative"
+                >
+                  <div className="bg-ather-green/10 rounded-2xl p-6 md:p-8 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-40 h-40 bg-ather-green/20 rounded-full -mr-10 -mt-10 blur-2xl"></div>
+                    <img 
+                      src="/assets/quiz-promo.png" 
+                      alt="Ather Scooter Compatibility Quiz" 
+                      className="relative z-10 max-w-full rounded-xl shadow-lg"
+                      onError={(e) => {
+                        // Fallback if image doesn't exist
+                        const target = e.target as HTMLImageElement;
+                        target.src = scooter450x; // Use imported scooter image as fallback
+                      }}
+                    />
+                    
+                    <div className="absolute bottom-6 right-6 md:bottom-8 md:right-8 bg-white/90 backdrop-blur-sm rounded-lg p-3 shadow-lg border border-green-100 z-20">
+                      <div className="flex items-center space-x-2">
+                        <div className="text-ather-green font-bold text-xl">85%</div>
+                        <div className="text-xs">
+                          <div className="font-medium text-ather-darkGray">Average match rate</div>
+                          <div className="text-ather-gray">Find your perfect Ather</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Testimonial */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                    className="absolute -bottom-12 -left-4 md:-left-12 bg-white rounded-lg p-4 shadow-lg max-w-xs z-20"
+                  >
+                    <div className="flex items-start space-x-3">
+                      <div className="flex-shrink-0">
+                        <div className="w-10 h-10 rounded-full bg-ather-green/20 flex items-center justify-center text-ather-green font-bold">
+                          RP
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-yellow-400 flex">
+                          ★★★★★
+                        </div>
+                        <p className="text-sm text-ather-darkGray mt-1">
+                          "The quiz recommended the perfect Ather for my commute. Couldn't be happier with my 450X!"
+                        </p>
+                        <p className="text-xs text-ather-gray mt-1">
+                          — Rahul P., Bangalore
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
         <ContactSection />
         
         <FAQ faqs={faqs} />
