@@ -24,10 +24,22 @@ const megaMenuItems = {
   resources: [
     { title: 'Investor relations', path: '/investor-relations' },
     { title: 'Charger refund', path: '/charger-refund' },
-    { title: 'Dealer locator', path: '/locate' },
-    { title: 'EMI calculator', path: '/emi-calculator' },
-    { title: 'Savings calculator', path: '/savings-calculator' },
-    { title: 'Fast chargers', path: '/fast-chargers' },
+      { title: 'Dealer locator', path: '/locate' },
+      { title: 'EMI calculator', path: '/emi-calculator' },
+      { title: 'Savings calculator', path: '/savings-calculator' },
+      { 
+        title: 'Sustainability calculator', 
+        path: '#sustainability-calculator',
+        onClick: (e: React.MouseEvent) => {
+          e.preventDefault();
+          const calculatorSection = document.getElementById('sustainability-calculator');
+          if (calculatorSection) {
+            window.dispatchEvent(new CustomEvent('showCalculator'));
+            calculatorSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        } 
+      },
+      { title: 'Fast chargers', path: '/fast-chargers' },
     { title: 'Blogs', path: '/blogs' },
     { title: 'FAQs', path: '/faqs' },
   ],
@@ -139,6 +151,22 @@ const Navbar: React.FC = () => {
           <Link to="/locate" className="text-sm font-medium hover:text-ather-green">
             Locate us
           </Link>
+          <a 
+            href="#sustainability-calculator" 
+            onClick={(e) => {
+              e.preventDefault();
+              const calculatorSection = document.getElementById('sustainability-calculator');
+              if (calculatorSection) {
+                // Dispatch custom event to notify Index component to show calculator
+                window.dispatchEvent(new CustomEvent('showCalculator'));
+                // Smooth scroll to calculator section
+                calculatorSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="text-sm font-medium text-ather-green hover:text-ather-green-dark cursor-pointer"
+          >
+            Sustainability Calculator
+          </a>
           
           <div className="flex items-center pl-3">
             <Link to="/region" className="w-6 h-6 rounded-full overflow-hidden bg-gray-200 block transition-transform hover:scale-110">

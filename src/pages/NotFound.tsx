@@ -1,15 +1,15 @@
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { ChevronLeft, Leaf, AlertTriangle } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { colors } from '@/styles/theme';
 
-import React from "react";
-import { useLocation, Link } from "react-router-dom";
-import { useEffect } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
-
-const NotFound = () => {
+const NotFound: React.FC = () => {
   const location = useLocation();
 
-  useEffect(() => {
+  // Log the attempted path for debugging
+  React.useEffect(() => {
     console.error(
       "404 Error: User attempted to access non-existent route:",
       location.pathname
@@ -17,36 +17,51 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
-      <Navbar />
-      
-      <div className="flex-grow flex items-center justify-center">
-        <div className="text-center max-w-xl px-4 py-12">
-          <h1 className="text-6xl font-bold mb-6">404</h1>
-          <p className="text-xl text-ather-gray mb-8">
-            We couldn't find the page you're looking for. It might have been moved or doesn't exist.
-          </p>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
+      <Card className="max-w-lg w-full shadow-lg border-0">
+        <CardContent className="p-0">
+          <div className="bg-primary-50 p-8 text-center rounded-t-lg" 
+               style={{ backgroundColor: `${colors.primary[50]}` }}>
+            <div className="flex justify-center mb-4">
+              <AlertTriangle className="h-20 w-20" style={{ color: colors.primary[500] }} />
+            </div>
+            <h1 className="text-6xl font-bold mb-2" style={{ color: colors.primary[600] }}>404</h1>
+            <h2 className="text-2xl font-medium mb-2" style={{ color: colors.primary[700] }}>
+              Page Not Found
+            </h2>
+          </div>
           
-          <div className="space-y-4">
-            <Link to="/">
-              <Button className="ather-button-primary">
-                Return to Home
-              </Button>
-            </Link>
+          <div className="p-8 text-center">
+            <p className="text-gray-600 mb-8">
+              Sorry, we couldn't find the page you're looking for. Our sustainability journey 
+              continues on the right path.
+            </p>
             
-            <div className="pt-4">
-              <Link 
-                to="/contact" 
-                className="text-ather-gray hover:text-ather-green transition-colors"
+            <div className="space-y-4">
+              <Button 
+                asChild 
+                className="w-full"
+                style={{ 
+                  backgroundColor: colors.primary[500],
+                  borderColor: colors.primary[600],
+                }}
               >
-                Contact Support
-              </Link>
+                <Link to="/" className="inline-flex items-center justify-center">
+                  <ChevronLeft className="w-4 h-4 mr-2" />
+                  Back to Calculator
+                </Link>
+              </Button>
+              
+              <div className="mt-6 pt-6 border-t border-gray-100 flex justify-center">
+                <Leaf className="w-5 h-5 mr-2 text-green-500" />
+                <span className="text-sm text-gray-500">
+                  Every wrong turn is an opportunity to reduce our carbon footprint
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      
-      <Footer />
+        </CardContent>
+      </Card>
     </div>
   );
 };
